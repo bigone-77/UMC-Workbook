@@ -17,12 +17,10 @@ const MovieContents = () => {
 
     return (
         <div className=''>
-            <div className='h-[20vh] w-full'>
-
-            </div>
-            <div className='grid grid-cols-8 items-center mx-2 gap-5'>
+            <div className='h-[20vh] w-full' />
+            <div className='grid items-center grid-cols-8 gap-5 mx-2'>
                 {movies?.map(movie => (
-                    <div className='w-full h-full rounded-sm bg-blue-900 '>
+                    <div className='w-full h-full bg-blue-900 rounded-sm '>
                         <MovieCard 
                             key={movie.id}
                             imgSrc={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}

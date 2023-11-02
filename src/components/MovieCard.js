@@ -17,7 +17,7 @@ const MovieCard = ({ imgSrc, title, star, detail }) => {
                 src={imgSrc}
                 alt='movie-img'
             />
-            <div className='flex justify-between mt-10 mx-3 text-white text-sm pb-2'>
+            <div className='flex justify-between pb-2 mx-3 mt-10 text-sm text-white'>
                 <div>
                     {title}
                 </div>
@@ -26,8 +26,8 @@ const MovieCard = ({ imgSrc, title, star, detail }) => {
                 </div>
             </div>
 
-            {showDetail && <div className='absolute top-0 z-20 bg-zinc-600 bg-opacity-50 h-full w-full px-2 py-6 text-white'>
-                <h1 className='font-bold text-lg'>
+            {showDetail && <div className='absolute top-0 z-20 w-full h-[330px] px-2 py-4 text-white bg-opacity-50 bg-zinc-600'>
+                <h1 className='font-bold '>
                     {title}
                 </h1>
                 <p className='mt-4'>
