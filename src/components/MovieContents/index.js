@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import styled from 'styled-components';
 import instance from '../../api/axios'
 import MovieCard from '../MovieCard';
 
@@ -16,11 +17,11 @@ const MovieContents = () => {
     }, [fetchMovieData])
 
     return (
-        <div className=''>
-            <div className='h-[20vh] w-full' />
-            <div className='grid items-center grid-cols-8 gap-5 mx-2'>
+        <>
+            <Wrapper/>
+            <Rows>
                 {movies?.map(movie => (
-                    <div className='w-full h-full bg-blue-900 rounded-sm '>
+                    <CardWrapper>
                         <MovieCard 
                             key={movie.id}
                             imgSrc={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
@@ -28,11 +29,31 @@ const MovieContents = () => {
                             star={movie.vote_average}
                             detail={movie.overview}
                         />
-                    </div>
+                    </CardWrapper>
                 )) }
-            </div>
-        </div>
+            </Rows>
+        </>
     )
 }
 
 export default MovieContents
+
+const Wrapper = styled.div`
+    height: 20%;
+    width: 100%;
+`;
+
+const Rows = styled.div`
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    align-items: center;
+    margin: 2px;
+`;
+
+const CardWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: #0D47A1; 
+    border-radius: 5px; 
+`;

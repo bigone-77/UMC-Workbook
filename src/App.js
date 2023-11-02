@@ -1,11 +1,17 @@
 import MovieContents from "./components/MovieContents";
+import styled from "styled-components";
 
 function App() {
   return (
-    <div className="bg-indigo-700 h-max">
+    <BackGround>
       <MovieContents />
-    </div>
+    </BackGround>
   );
 }
 
 export default App;
+
+const BackGround = styled.div`
+  background-color: #303F9F;
+  height: max-content;
+`
