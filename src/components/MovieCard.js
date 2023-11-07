@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 // import styled from 'styled-components';
 
 const MovieCard = ({ imgSrc, title, star, detail }) => {
@@ -7,6 +9,7 @@ const MovieCard = ({ imgSrc, title, star, detail }) => {
         return str?.length > n ? str.substring(0, n) + "..." : str;
     }
     const [showDetail, setShowDetail] = useState(false);
+    const navigate = useNavigate();
     return (
         // <CardContentWrapper
         //     onMouseEnter={() => setShowDetail(true)}
@@ -16,7 +19,12 @@ const MovieCard = ({ imgSrc, title, star, detail }) => {
         <div 
             onMouseEnter={() => setShowDetail(true)}
             onMouseLeave={() => setShowDetail(false)}
-            className='relative z-10'
+            className='relative z-10 w-full h-full bg-blue-900 rounded-sm'
+            onClick={() => 
+                navigate(`/movie/${title}`, {
+                    state: { imgSrc, title, star, detail }
+                })
+            }
         >
             {/* <CardImage
                 src={imgSrc}

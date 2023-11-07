@@ -7,6 +7,7 @@ const MovieContents = () => {
 
     const [movies, setMovies] = useState([]);
 
+
     const fetchMovieData = useCallback(async () => {
         const response = await instance.get("/discover/movie?with_genres=28");
         setMovies(response.data.results.slice(1,17));
@@ -24,15 +25,16 @@ const MovieContents = () => {
             {/* <Rows> */}
                 {movies?.map(movie => (
                     // <CardWrapper>
-                    <div className='w-full h-full bg-blue-900 rounded-sm '>
+                    // <div className='w-full h-full bg-blue-900 rounded-sm '>
                         <MovieCard 
                             key={movie.id}
                             imgSrc={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                             title={movie.title || movie.name || movie.original_name}
                             star={movie.vote_average}
                             detail={movie.overview}
+                            
                         />
-                    </div>
+                    // </div>
                 )) }
             </div>
         </div>
