@@ -6,6 +6,7 @@ import TVPage from "./pages/TVPage/page";
 import CelebPage from "./pages/CelebPage/page";
 import DetailPage from "./pages/DetailPage/page";
 import ErrorPage from "./pages/ErrorPage/page";
+import LoginPage from "./pages/LoginPage/page";
 // import styled from "styled-components";
 
 const Layout = () => {
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />} >
           <Route index element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="movie" element={<MoviePage />} />
           <Route path="movie/:movieId" element={<DetailPage />} />
           <Route path="tv" element={<TVPage />} />

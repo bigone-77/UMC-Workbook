@@ -3,19 +3,19 @@ import React, { useCallback, useEffect, useState } from 'react'
 import instance from '../../api/axios'
 import MovieCard from '../MovieCard';
 
-const MovieContents = () => {
+const PageContents = ({ url }) => {
 
-    const [movies, setMovies] = useState([]);
+    const [contents, setContents] = useState([]);
 
 
-    const fetchMovieData = useCallback(async () => {
-        const response = await instance.get("/discover/movie?with_genres=28");
-        setMovies(response.data.results.slice(1,17));
+    const fetchMovieData = useCallback(async (url) => {
+        const response = await instance.get(url);
+        setContents(response.data.results.slice(1,17));
     }, []);
 
     useEffect(() => {
-        fetchMovieData()
-    }, [fetchMovieData])
+        fetchMovieData(url)
+    }, [fetchMovieData, url])
 
     return (
         <div>
@@ -23,15 +23,15 @@ const MovieContents = () => {
             <div className='grid items-center grid-cols-8 gap-5 mx-2'>
             {/* <Wrapper/> */}
             {/* <Rows> */}
-                {movies?.map(movie => (
+                {contents?.map(c => (
                     // <CardWrapper>
                     // <div className='w-full h-full bg-blue-900 rounded-sm '>
                         <MovieCard 
-                            key={movie.id}
-                            imgSrc={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                            title={movie.title || movie.name || movie.original_name}
-                            star={movie.vote_average}
-                            detail={movie.overview}
+                            key={c.id}
+                            imgSrc={`https://image.tmdb.org/t/p/original/${c.backdrop_path}`}
+                            title={c.title || c.name || c.original_name}
+                            star={c.vote_average}
+                            detail={c.overview}
                             
                         />
                     // </div>
@@ -41,7 +41,7 @@ const MovieContents = () => {
     )
 }
 
-export default MovieContents
+export default PageContents
 
 // const Wrapper = styled.div`
 //     height: 20%;

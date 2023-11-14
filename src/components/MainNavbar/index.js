@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    
     return (
         <div className='w-full py-4 bg-cyan-800'>
             <div className='ml-40'>
@@ -22,16 +23,18 @@ const Navbar = () => {
                     <div className='flex items-center gap-4 text-sm'>
                         <div 
                             className='px-4 py-1 rounded-full cursor-pointer bg-zinc-100'
-                            onClick={() => setIsLoggedIn(!isLoggedIn)}
+                            onClick={() => navigate('/login')}
                         >
-                            <p>{`${isLoggedIn ? '로그인' : '로그아웃'}`}</p>
+                            {/* <p>{`${isLoggedIn ? '로그아웃' : '로그인'}`}</p> */}
+                            <p>로그인</p>
                         </div>
                         <p className='text-white'>
-                            {`${isLoggedIn ? '로그인 해주세요!' : '환영합니다!'}`}
+                            {/* {`${isLoggedIn ? '환영합니다!' : '로그인 해주세요!'}`} */}
                         </p>
                     </div>
                 </div>
             </div>
+            
         </div>
     )
 }

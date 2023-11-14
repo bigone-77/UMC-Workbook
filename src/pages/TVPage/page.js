@@ -1,9 +1,14 @@
 import React from 'react'
+import PageContents from '../../components/PageContents';
+import requests from '../../api/requests';
 
-const TVPage = () => {
+
+const MoviePage = () => {
     return (
-        <div>TVPage</div>
+        <div>
+            <PageContents url={requests.fetchTV}/>
+        </div>
     )
 }
-
-export default TVPage
+    
+export default MoviePage;
