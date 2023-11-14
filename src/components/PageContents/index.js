@@ -1,21 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react'
 // import styled from 'styled-components';
 import instance from '../../api/axios'
-import MovieCard from '../MovieCard';
+import Card from '../Card';
 
 const PageContents = ({ url }) => {
 
     const [contents, setContents] = useState([]);
 
 
-    const fetchMovieData = useCallback(async (url) => {
+    const fetchContentsData = useCallback(async (url) => {
         const response = await instance.get(url);
         setContents(response.data.results.slice(1,17));
     }, []);
 
     useEffect(() => {
-        fetchMovieData(url)
-    }, [fetchMovieData, url])
+        fetchContentsData(url)
+    }, [fetchContentsData, url])
 
     return (
         <div>
@@ -26,7 +26,7 @@ const PageContents = ({ url }) => {
                 {contents?.map(c => (
                     // <CardWrapper>
                     // <div className='w-full h-full bg-blue-900 rounded-sm '>
-                        <MovieCard 
+                        <Card 
                             key={c.id}
                             imgSrc={`https://image.tmdb.org/t/p/original/${c.backdrop_path}`}
                             title={c.title || c.name || c.original_name}
