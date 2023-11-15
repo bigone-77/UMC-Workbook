@@ -1,9 +1,21 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
+import { removeUser } from '../../store/userSlice';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    
+    const currentUser = useSelector(state => state.user.token);
+    const userId = useSelector(state => state.user.userId);
+    const dispatch = useDispatch();
+
+    const authHandler = () => {
+        if (currentUser) {
+            dispatch(removeUser());
+        } else {
+            navigate('/login');
+        }
+    }
     return (
         <div className='w-full py-4 bg-cyan-800'>
             <div className='ml-40'>
@@ -23,13 +35,13 @@ const Navbar = () => {
                     <div className='flex items-center gap-4 text-sm'>
                         <div 
                             className='px-4 py-1 rounded-full cursor-pointer bg-zinc-100'
-                            onClick={() => navigate('/login')}
+                            onClick={authHandler}
                         >
-                            {/* <p>{`${isLoggedIn ? '로그아웃' : '로그인'}`}</p> */}
-                            <p>로그인</p>
+                            <p>{`${currentUser ? '로그아웃' : '로그인'}`}</p>
+                            
                         </div>
                         <p className='text-white'>
-                            {/* {`${isLoggedIn ? '환영합니다!' : '로그인 해주세요!'}`} */}
+                            {`${currentUser ? `환영합니다 ${userId}님!`  : '로그인 해주세요!'}`}
                         </p>
                     </div>
                 </div>
