@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/userSlice';
 import { useNavigate } from 'react-router-dom';
-// import useDebounce from '../../hooks/useDebounce';
 
 
 const LoginPage = () => {
@@ -18,11 +17,6 @@ const LoginPage = () => {
 
     const dispatch = useDispatch();
     
-
-    // if (!enteredId.match('^[a-zA-Z0-9+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$')) {
-        //     // console.log('잘못된 이메일형식 입니다.');
-        // }
-
     const submitHandler = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -37,7 +31,7 @@ const LoginPage = () => {
                 pw: enteredPassword
             });
             
-            console.log(response.data.result);
+            console.log(response.data);
             dispatch(setUser({
                 userId: response.data.result.userId,
                 token: response.data.result.AccessToken
